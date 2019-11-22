@@ -61,6 +61,9 @@ inquirer
 
     .then(answers =>{
         console.log(answers.teamMember);
+        let memberInfo = {
+            memberType: answers.teamMember,
+        }
     })
 }
 
@@ -92,6 +95,13 @@ function engineerPrompts(){
         ])
         .then(answers =>{
             console.log(answers);
+            
+            let engineerInfo = {
+                name: answers.memberName,
+                id: answers.idNumber,
+                email: answers.email,
+                github: answers.github,
+            }
         })
 
 };
@@ -123,5 +133,12 @@ function internPrompts(){
     ])
     .then(answers =>{
         console.log(answers);
+
+        let internInfo = {
+            name: answers.name,
+            id: answers.idNumber,
+            email: answers.email,
+            college: answers.college;
+        }
     })
 }
