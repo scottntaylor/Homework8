@@ -1,4 +1,5 @@
-var inquirer = require('inquirer');
+const inquirer = require('inquirer');
+const fs = require('fs');
 let teamArray = []
 
 
@@ -33,8 +34,8 @@ function managerPrompt() {
         ])
         .then(answers => {
 
-            let managerInfo = new manager (answers.managerName, answers.idNumber, answers.email, answers.office)
-           
+            let managerInfo = new manager(answers.managerName, answers.idNumber, answers.email, answers.office)
+
             // var managerInfo = {
             //     managerName: answers.managerName,
             //     id: answers.idNumber,
@@ -43,8 +44,8 @@ function managerPrompt() {
 
             // }
 
-teamArray.push(managerInfo);
-// console.log(teamArray);
+            teamArray.push(managerInfo);
+            // console.log(teamArray);
 
             memberQuestion();
 
@@ -69,18 +70,18 @@ function memberQuestion() {
             var memberInfo = {
                 memberType: answers.teamMember,
             }
-        
-    if (memberInfo.memberType === "Engineer") {
-        engineerPrompts();
-    }
-    else if (memberInfo.memberType === "Intern") {
-        internPrompts();
-    }
-     else if (memberInfo.memberType === "I am finished"){
-    // Run Create HTML Function
-     console.log("Your team member display is ready!")
-     }
-})
+
+            if (memberInfo.memberType === "Engineer") {
+                engineerPrompts();
+            }
+            else if (memberInfo.memberType === "Intern") {
+                internPrompts();
+            }
+            else if (memberInfo.memberType === "I am finished") {
+                // Run Create HTML Function
+                console.log("Your team member display is ready!")
+            }
+        })
 }
 
 function engineerPrompts() {
@@ -112,7 +113,7 @@ function engineerPrompts() {
         .then(answers => {
             // console.log(answers);
 
-            let engineerInfo = new Intern (answers.memberName, answers.idNumber, answers.email, answers.github)
+            let engineerInfo = new Intern(answers.memberName, answers.idNumber, answers.email, answers.github)
 
             // let engineerInfo = {
             //     name: answers.memberName,
