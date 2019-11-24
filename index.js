@@ -1,5 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const employee = require('./lib/employee');
+const manager = require('./lib/manager');
+const engineer = require('./lib/engineer');
+const intern = require('./lib/intern');
 let teamArray = []
 
 
@@ -113,7 +117,7 @@ function engineerPrompts() {
         .then(answers => {
             // console.log(answers);
 
-            let engineerInfo = new Intern(answers.memberName, answers.idNumber, answers.email, answers.github)
+            let engineerInfo = new engineer(answers.memberName, answers.idNumber, answers.email, answers.github)
 
             // let engineerInfo = {
             //     name: answers.memberName,
@@ -156,7 +160,7 @@ function internPrompts() {
         .then(answers => {
             // console.log(answers);
 
-            let internInfo = new Intern(answers.name, answers.idNumber, answers.email, answers.college)
+            let internInfo = new intern(answers.name, answers.idNumber, answers.email, answers.college)
 
             teamArray.push(internInfo);
             memberQuestion();
