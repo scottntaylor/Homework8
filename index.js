@@ -171,7 +171,7 @@ function internPrompts() {
 }
 
 function createDisplay(){
-    fs.writeFile('display.html', createHTML(), (err) =>{
+    fs.writeFile('display.html', createHTML, (err) =>{
         if (err) throw err;
 
         console.log( "Check out display.html for your team display!");

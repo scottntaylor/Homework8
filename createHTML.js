@@ -31,5 +31,5 @@ return ` <div class="card m-2" style="width: 18rem;">
 </div>`
 }
 
-module.exports = createHTMl;
+module.exports = createHTML;
 module.exports = teamMemberHTML;
