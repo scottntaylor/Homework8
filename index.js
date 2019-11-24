@@ -5,6 +5,7 @@ const manager = require('./lib/manager');
 const engineer = require('./lib/engineer');
 const intern = require('./lib/intern');
 const createHTML = require('./createHTML');
+const teamMemberHTML = require('./createTeamMemberHTML');
 let team = []
 
 
@@ -175,5 +176,13 @@ function createDisplay(){
         if (err) throw err;
 
         console.log( "Check out display.html for your team display!");
+        addTeamMember(team);
     })
 };
+
+function addTeamMember(){
+    let teamMember = teamMemberHTML(team);
+    for (i=0; i < team.length; i++){
+        fs.appendFile('display.html', teamMember);
+    }
+}
