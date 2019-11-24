@@ -1,4 +1,5 @@
 var inquirer = require('inquirer');
+let teamArray = []
 
 
 managerPrompt();
@@ -32,15 +33,18 @@ function managerPrompt() {
         ])
         .then(answers => {
 
-            var managerInfo = {
-                managerName: answers.managerName,
-                id: answers.idNumber,
-                email: answers.email,
-                office: answers.office,
+            let managerInfo = new manager (answers.managerName, answers.idNumber, answers.email, answers.office)
+           
+            // var managerInfo = {
+            //     managerName: answers.managerName,
+            //     id: answers.idNumber,
+            //     email: answers.email,
+            //     office: answers.office,
 
-            }
+            // }
 
-
+teamArray.push(managerInfo);
+// console.log(teamArray);
 
             memberQuestion();
 
@@ -108,12 +112,16 @@ function engineerPrompts() {
         .then(answers => {
             // console.log(answers);
 
-            let engineerInfo = {
-                name: answers.memberName,
-                id: answers.idNumber,
-                email: answers.email,
-                github: answers.github,
-            }
+            let engineerInfo = new Intern (answers.memberName, answers.idNumber, answers.email, answers.github)
+
+            // let engineerInfo = {
+            //     name: answers.memberName,
+            //     id: answers.idNumber,
+            //     email: answers.email,
+            //     github: answers.github,
+            // }
+
+            teamArray.push(engineerInfo);
             memberQuestion();
         })
 
@@ -147,12 +155,11 @@ function internPrompts() {
         .then(answers => {
             // console.log(answers);
 
-            let internInfo = {
-                name: answers.name,
-                id: answers.idNumber,
-                email: answers.email,
-                college: answers.college,
-            }
+            let internInfo = new Intern(answers.name, answers.idNumber, answers.email, answers.college)
+
+            teamArray.push(internInfo);
             memberQuestion();
         })
 }
+
+// function
