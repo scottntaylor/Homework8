@@ -4,7 +4,8 @@ const employee = require('./lib/employee');
 const manager = require('./lib/manager');
 const engineer = require('./lib/engineer');
 const intern = require('./lib/intern');
-let teamArray = []
+const createHTML = require('./createHTML');
+let team = []
 
 
 managerPrompt();
@@ -30,7 +31,7 @@ function managerPrompt() {
             {
                 type: "input",
                 message: "What is your office number?",
-                name: "office",
+                name: "misc",
             },
 
 
@@ -38,7 +39,7 @@ function managerPrompt() {
         ])
         .then(answers => {
 
-            let managerInfo = new manager(answers.managerName, answers.idNumber, answers.email, answers.office)
+            let managerInfo = new manager(answers.managerName, answers.idNumber, answers.email, answers.misc)
 
             // var managerInfo = {
             //     managerName: answers.managerName,
@@ -48,7 +49,7 @@ function managerPrompt() {
 
             // }
 
-            teamArray.push(managerInfo);
+            team.push(managerInfo);
             // console.log(teamArray);
 
             memberQuestion();
@@ -84,6 +85,8 @@ function memberQuestion() {
             else if (memberInfo.memberType === "I am finished") {
                 // Run Create HTML Function
                 console.log("Your team member display is ready!")
+                // console.log(teamArray);
+                createDisplay();
             }
         })
 }
@@ -109,7 +112,7 @@ function engineerPrompts() {
             {
                 type: "input",
                 message: "what is your Github username?",
-                name: "github",
+                name: "misc",
             }
 
 
@@ -117,7 +120,7 @@ function engineerPrompts() {
         .then(answers => {
             // console.log(answers);
 
-            let engineerInfo = new engineer(answers.memberName, answers.idNumber, answers.email, answers.github)
+            let engineerInfo = new engineer(answers.memberName, answers.idNumber, answers.email, answers.misc)
 
             // let engineerInfo = {
             //     name: answers.memberName,
@@ -126,7 +129,7 @@ function engineerPrompts() {
             //     github: answers.github,
             // }
 
-            teamArray.push(engineerInfo);
+            team.push(engineerInfo);
             memberQuestion();
         })
 
@@ -152,7 +155,7 @@ function internPrompts() {
             {
                 type: "input",
                 message: "what is your college/university?",
-                name: "college",
+                name: "misc",
             }
 
 
@@ -160,11 +163,17 @@ function internPrompts() {
         .then(answers => {
             // console.log(answers);
 
-            let internInfo = new intern(answers.name, answers.idNumber, answers.email, answers.college)
+            let internInfo = new intern(answers.name, answers.idNumber, answers.email, answers.misc)
 
-            teamArray.push(internInfo);
+            team.push(internInfo);
             memberQuestion();
         })
 }
 
-// function
+function createDisplay(){
+    fs.writeFile('display.html', createHTML(), (err) =>{
+        if (err) throw err;
+
+        console.log( "Check out display.html for your team display!");
+    })
+};
