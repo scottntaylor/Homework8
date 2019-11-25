@@ -183,6 +183,8 @@ function createDisplay(){
 function addTeamMember(){
     let teamMember = teamMemberHTML(team);
     for (i=0; i < team.length; i++){
-        fs.appendFile('display.html', teamMember);
+        fs.appendFile('display.html', teamMember, (err) =>{
+            if (err) throw err;
+        });
     }
 }
