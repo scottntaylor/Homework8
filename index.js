@@ -1,9 +1,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const open = require('open');
 const employee = require('./lib/employee');
 const manager = require('./lib/manager');
 const engineer = require('./lib/engineer');
-const intern = require('./lib/intern');
+const Intern = require('./lib/intern');
 const createHTML = require('./createHTML');
 const teamMemberHTML = require('./createTeamMemberHTML');
 let team = []
@@ -16,9 +17,10 @@ function managerPrompt() {
         .prompt([
             {
                 type: "input",
-                message: "What is the name of your manager?",
-                name: "managerName",
+                message: "What is the name of the manager?",
+                name: "name",
             },
+
             {
                 type: "input",
                 message: "What is your ID number?",
@@ -86,8 +88,9 @@ function memberQuestion() {
             else if (memberInfo.memberType === "I am finished") {
                 // Run Create HTML Function
                 console.log("Your team member display is ready!")
-                // console.log(teamArray);
-                createDisplay();
+                console.log(team);
+                createDisplay(team);
+                open('display.html');
             }
         })
 }
@@ -100,6 +103,7 @@ function engineerPrompts() {
                 message: "What is your name?",
                 name: "memberName",
             },
+            
             {
                 type: "input",
                 message: "What is your ID number?",
@@ -143,6 +147,7 @@ function internPrompts() {
                 message: "What is your name?",
                 name: "memberName",
             },
+            
             {
                 type: "input",
                 message: "What is your ID number?",
@@ -164,15 +169,15 @@ function internPrompts() {
         .then(answers => {
             // console.log(answers);
 
-            let internInfo = new intern(answers.name, answers.idNumber, answers.email, answers.misc)
+            let internInfo = new Intern(answers.name, answers.idNumber, answers.email, answers.misc)
 
             team.push(internInfo);
             memberQuestion();
         })
 }
 
-function createDisplay(){
-    fs.writeFile('display.html', createHTML, (err) =>{
+function createDisplay(team){
+    fs.writeFile('display.html', createHTML(), (err) =>{
         if (err) throw err;
 
         console.log( "Check out display.html for your team display!");
@@ -180,7 +185,7 @@ function createDisplay(){
     })
 };
 
-function addTeamMember(){
+function addTeamMember(team){
     let teamMember = teamMemberHTML(team);
     for (i=0; i < team.length; i++){
         fs.appendFile('display.html', teamMember, (err) =>{
@@ -188,3 +193,5 @@ function addTeamMember(){
         });
     }
 }
+
+// module.exports = index;

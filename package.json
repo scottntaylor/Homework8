@@ -1,0 +1,30 @@
+{
+  "name": "Homework8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "inquirer": "^7.0.0",
+    "jest": "^24.9.0",
+    "open": "^7.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottntaylor/Homework8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scottntaylor/Homework8/issues"
+  },
+  "homepage": "https://github.com/scottntaylor/Homework8#readme"
+}

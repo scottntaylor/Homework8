@@ -1,3 +1,5 @@
+// const index = require('./index');
+
 function createHTML(team){
     return `<!DOCTYPE html>
 <html lang="en">
